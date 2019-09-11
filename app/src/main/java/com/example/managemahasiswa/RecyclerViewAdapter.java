@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,8 +33,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final UserViewHolder holder, int position) {
         final Mahasiswa currentPerson = listPersonInfo.get(position);
+        holder.tvName.setText(currentPerson.getNama());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Toast.makeText(holder.itemView.getContext(), "Kamu memilih " + listPersonInfo.get(holder.getAdapterPosition()).getNama(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

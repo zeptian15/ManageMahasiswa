@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class Splash extends AppCompatActivity {
 
-    private int waktu_loading = 4000;
+    private int waktu_loading = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
