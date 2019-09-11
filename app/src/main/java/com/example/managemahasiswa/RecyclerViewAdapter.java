@@ -2,6 +2,7 @@ package com.example.managemahasiswa;
 
 import android.app.Person;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -36,11 +38,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull final UserViewHolder holder, int position) {
         final Mahasiswa currentPerson = listPersonInfo.get(position);
         holder.tvName.setText(currentPerson.getNama());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
                 Toast.makeText(holder.itemView.getContext(), "Kamu memilih " + listPersonInfo.get(holder.getAdapterPosition()).getNama(), Toast.LENGTH_SHORT).show();
+                alert(currentPerson);
             }
         });
     }
@@ -51,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public interface OnUserClickListener{
-        void onUserClick(Mahasiswa currentPerson, String action);
+        void onMahasiswaClick(Mahasiswa mahasiswa);
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder{
@@ -60,6 +64,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             tvName = itemView.findViewById(R.id.labelMahasiswa);
         }
+    }
+
+    public void alert(final Mahasiswa mahasiswa){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Pilihan")
+                .setPositiveButton("LihatData", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context, "LIHAT DATA!", Toast.LENGTH_SHORT).show();
+//                        Intent detailData = new Intent(context,DetailData.class);
+//                        detailData.putExtra("DETAIL_INTENT",siswa);
+//                        context.startActivity(detailData);
+                    }
+                })
+                .setNegativeButton("UbahData", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context, "UBAH DATA!", Toast.LENGTH_SHORT).show();
+//                        Intent updateData = new Intent(context,InputData.class);
+//                        updateData.putExtra("UPDATE_INTENT",siswa);
+//                        updateData.putExtra("UPDATE_ACTION","Update");
+//                        context.startActivity(updateData);
+                    }
+                })
+                .setNeutralButton("HapusData", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context, "HAPUS DATA!", Toast.LENGTH_SHORT).show();
+                        DatabaseHelper db = new DatabaseHelper(context);
+                        db.delete(mahasiswa.getId_mahasiswa());
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
 
