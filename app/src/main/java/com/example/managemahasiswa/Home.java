@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Home extends AppCompatActivity{
     RecyclerView.LayoutManager layoutManager;
     private List<Mahasiswa> list = new ArrayList<>();
     Context context;
+    ImageButton tambah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,17 @@ public class Home extends AppCompatActivity{
         rvMahasiswa = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         rvMahasiswa.setLayoutManager(layoutManager);
+
+        tambah = (ImageButton) findViewById(R.id.tambah);
+
+        tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent add = new Intent(getApplicationContext(),InputActivity.class);
+                add.putExtra("UPDATE_ACTION","Insert");
+                startActivity(add);
+            }
+        });
 
         setupRecyclerView();
     }

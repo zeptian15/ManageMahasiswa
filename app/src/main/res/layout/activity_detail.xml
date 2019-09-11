@@ -5,19 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F4E7"
+    android:id="@+id/base"
     tools:context=".InputActivity">
 
 
+    <ScrollView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <ImageView
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/student1"
-        android:layout_marginTop="30dp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/labelNomor"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         />
+
 
 
     <TextView
@@ -25,8 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nomor"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/icon"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@id/inputNomor"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_margin="15dp"
         android:drawableLeft="@drawable/ic_create_black_24dp"
@@ -36,8 +49,8 @@
     <EditText
         android:id="@+id/inputNomor"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/labelNomor"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/labelNama"
         android:layout_margin="15dp"
         />
 
@@ -47,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nama"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/inputNomor"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@id/inputNama"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_margin="15dp"
         />
@@ -57,8 +70,8 @@
     <EditText
         android:id="@+id/inputNama"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/labelNama"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/labelTanggal"
         android:layout_margin="15dp"
         />
 
@@ -69,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tanggal Lahir"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/inputNama"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@id/inputTanggal"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_margin="15dp"
         />
@@ -79,8 +92,8 @@
     <EditText
         android:id="@+id/inputTanggal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/labelTanggal"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/labelJenkel"
         android:layout_margin="15dp"
         />
 
@@ -92,8 +105,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jenis Kelamin"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/inputTanggal"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@id/inputJenkel"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_margin="15dp"
         />
@@ -102,8 +115,8 @@
     <EditText
         android:id="@+id/inputJenkel"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/labelJenkel"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/labelAlamat"
         android:layout_margin="15dp"
         />
 
@@ -114,8 +127,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alamat"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/inputJenkel"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@id/inputAlamat"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_margin="15dp"
         />
@@ -124,25 +137,14 @@
     <EditText
         android:id="@+id/inputAlamat"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/labelAlamat"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        />
-
-
-    <Button
-        android:id="@+id/simpan"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="SIMPAN"
-        android:textSize="20dp"
-        android:textColor="#E91E63"
-        app:layout_constraintRight_toRightOf="parent"
+        android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="20dp"
-        android:background="#00000000"
-        android:drawableLeft="@drawable/ic_save_black_24dp"
         />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
