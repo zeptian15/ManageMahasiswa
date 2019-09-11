@@ -160,7 +160,8 @@
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="@id/inputAlamat"
         app:layout_constraintLeft_toLeftOf="@id/inputAlamat"
-        app:layout_constraintTop_toTopOf="@id/inputAlamat" />
+        app:layout_constraintTop_toTopOf="@id/inputAlamat"
+        />
 
     <Button
         android:id="@+id/simpan"
