@@ -1,9 +1,11 @@
 package com.example.managemahasiswa;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,5 +67,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String WhereClause = KEY_ID + "='" + id + "'";
         db.delete(TABLE_NAME, WhereClause, null);
+    }
+
+    //Insert Data
+    public void insert(Mahasiswa mahasiswa){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues konten = new ContentValues();
+
+        konten.put(KEY_ID,mahasiswa.getId_mahasiswa());
+        konten.put(KEY_NAME,mahasiswa.getNama());
+        konten.put(KEY_ADDRESS,mahasiswa.getAlamat());
+        konten.put(KEY_DATE,mahasiswa.getTanggal());
+        konten.put(KEY_GENDER,mahasiswa.getKelamin());
+
+        db.insert(TABLE_NAME,null,konten);
+    }
+
+    //Update Data
+    public void update(Mahasiswa mahasiswa){
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues konten = new ContentValues();
+
+        konten.put(KEY_ID,mahasiswa.getId_mahasiswa());
+        konten.put(KEY_NAME,mahasiswa.getNama());
+        konten.put(KEY_ADDRESS,mahasiswa.getAlamat());
+        konten.put(KEY_DATE,mahasiswa.getTanggal());
+        konten.put(KEY_GENDER,mahasiswa.getKelamin());
+
+        String indikatorHapus = KEY_ID + " = '"+mahasiswa.getId_mahasiswa()+"'";
+
+        db.update(TABLE_NAME,konten,indikatorHapus,null);
     }
 }
