@@ -1,5 +1,6 @@
 package com.example.managemahasiswa;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -20,6 +21,10 @@ public class InputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
+        ActionBar actionBar = getSupportActionBar();
+        getSupportActionBar().setTitle("Input Data");
+
+        Bundle detail = getIntent().getExtras();
 
         context = this;
         simpan = findViewById(R.id.simpan);
@@ -29,6 +34,16 @@ public class InputActivity extends AppCompatActivity {
         jenkel = findViewById(R.id.inputJenkel);
         tanggal = findViewById(R.id.inputTanggal);
 
+        if(detail.getString("UPDATE_ACTION").equals("Update")) {
+            getSupportActionBar().setTitle("Edit Data");
+            Mahasiswa mahasiswa = getIntent().getParcelableExtra("UPDATE_INTENT");
+
+            nomor.setText(String.valueOf(mahasiswa.getId_mahasiswa()));
+            nama.setText(mahasiswa.getNama());
+            tanggal.setText(mahasiswa.getTanggal());
+            jenkel.setText(mahasiswa.getKelamin());
+            alamat.setText(mahasiswa.getAlamat());
+        }
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,8 +56,20 @@ public class InputActivity extends AppCompatActivity {
                 mahasiswa.setKelamin(jenkel.getText().toString());
                 mahasiswa.setTanggal(tanggal.getText().toString());
 
-                db.insert(mahasiswa);
-                Toast.makeText(getApplicationContext(), "Data Berhasil Dimasukan", Toast.LENGTH_SHORT).show();
+                Bundle detail = getIntent().getExtras();
+                if(detail.getString("UPDATE_ACTION").equals("Update")){
+                    db.update(mahasiswa);
+                    Toast.makeText(getApplicationContext(), "Data Berhasil Di Update", Toast.LENGTH_SHORT).show();
+                    Intent home = new Intent(InputActivity.this, Home.class);
+                    startActivity(home);
+                    finish();
+                } if(detail.getString("UPDATE_ACTION").equals("Insert")) {
+                    db.insert(mahasiswa);
+                    Toast.makeText(getApplicationContext(), "Data Berhasil Dimasukan", Toast.LENGTH_SHORT).show();
+                    Intent home = new Intent(InputActivity.this, Home.class);
+                    startActivity(home);
+                    finish();
+                }
 
             }
         });

@@ -3,6 +3,7 @@ package com.example.managemahasiswa;
 import android.app.Person;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mahasiswa_row_item, parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mahasiswa_row_item, parent,false);
         UserViewHolder userViewHolder = new UserViewHolder(view);
         return userViewHolder;
     }
@@ -72,20 +73,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .setPositiveButton("LihatData", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(context, "LIHAT DATA!", Toast.LENGTH_SHORT).show();
-//                        Intent detailData = new Intent(context,DetailData.class);
-//                        detailData.putExtra("DETAIL_INTENT",siswa);
-//                        context.startActivity(detailData);
+                        Toast.makeText(context, "Lihat Data", Toast.LENGTH_SHORT).show();
+                        Intent detailData = new Intent(context,DetailActivity.class);
+                        detailData.putExtra("DETAIL_INTENT",mahasiswa);
+                        context.startActivity(detailData);
                     }
                 })
                 .setNegativeButton("UbahData", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(context, "UBAH DATA!", Toast.LENGTH_SHORT).show();
-//                        Intent updateData = new Intent(context,InputData.class);
-//                        updateData.putExtra("UPDATE_INTENT",siswa);
-//                        updateData.putExtra("UPDATE_ACTION","Update");
-//                        context.startActivity(updateData);
+                        Intent updateData = new Intent(context,InputActivity.class);
+                        updateData.putExtra("UPDATE_INTENT",mahasiswa);
+                        updateData.putExtra("UPDATE_ACTION","Update");
+                        context.startActivity(updateData);
                     }
                 })
                 .setNeutralButton("HapusData", new DialogInterface.OnClickListener() {

@@ -1,5 +1,6 @@
 package com.example.managemahasiswa;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,8 @@ public class Home extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ActionBar actionBar = getSupportActionBar();
+        getSupportActionBar().setTitle("Manage Mahasiswa");
 
         rvMahasiswa = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
@@ -39,7 +42,7 @@ public class Home extends AppCompatActivity{
         setupRecyclerView();
     }
 
-    private void setupRecyclerView(){
+    public void setupRecyclerView(){
         DatabaseHelper db = new DatabaseHelper(this);
         list = db.selectUserData();
 
