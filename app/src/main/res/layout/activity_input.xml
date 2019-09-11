@@ -128,16 +128,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="20dp"
         android:background="#00000000"
-        />
-
-    <ImageView
-        android:id="@+id/iconsimpan"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_save_black_24dp"
-        app:layout_constraintRight_toLeftOf="@id/simpan"
-        app:layout_constraintBottom_toBottomOf="@id/simpan"
-        android:layout_marginRight="10dp"
+        android:drawableLeft="@drawable/ic_save_black_24dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
