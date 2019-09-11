@@ -21,8 +21,8 @@ public class DashboardActivity extends AppCompatActivity {
         inputData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent lihatData = new Intent(DashboardActivity.this,InputActivity.class);
-                startActivity(lihatData);
+                Intent inputData = new Intent(DashboardActivity.this,InputActivity.class);
+                startActivity(inputData);
             }
         });
 
