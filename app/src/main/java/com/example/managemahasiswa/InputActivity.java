@@ -8,11 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class InputActivity extends AppCompatActivity {
 
-    EditText nomor,nama,alamat,jenkel,tanggal;
-    Button simpan;
+    private EditText nomor,nama,alamat,jenkel,tanggal;
+    private Button simpan;
     Context context;
 
     @Override
@@ -20,6 +21,7 @@ public class InputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
 
+        context = this;
         simpan = findViewById(R.id.simpan);
         nomor = findViewById(R.id.inputNomor);
         nama = findViewById(R.id.inputNama);
@@ -40,6 +42,7 @@ public class InputActivity extends AppCompatActivity {
                 mahasiswa.setTanggal(tanggal.getText().toString());
 
                 db.insert(mahasiswa);
+                Toast.makeText(getApplicationContext(), "Data Berhasil Dimasukan", Toast.LENGTH_SHORT).show();
 
             }
         });

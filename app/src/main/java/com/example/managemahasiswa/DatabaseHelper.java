@@ -76,9 +76,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         konten.put(KEY_ID,mahasiswa.getId_mahasiswa());
         konten.put(KEY_NAME,mahasiswa.getNama());
-        konten.put(KEY_ADDRESS,mahasiswa.getAlamat());
         konten.put(KEY_DATE,mahasiswa.getTanggal());
         konten.put(KEY_GENDER,mahasiswa.getKelamin());
+        konten.put(KEY_ADDRESS,mahasiswa.getAlamat());
 
         db.insert(TABLE_NAME,null,konten);
     }
