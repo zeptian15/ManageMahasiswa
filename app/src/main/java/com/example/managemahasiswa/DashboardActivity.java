@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    Button inputData;
+    private Button lihatData,inputData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,16 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent lihatData = new Intent(DashboardActivity.this,InputActivity.class);
+                startActivity(lihatData);
+            }
+        });
+
+        lihatData = (Button) findViewById(R.id.lihatdata);
+
+        lihatData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lihatData = new Intent(DashboardActivity.this,Home.class);
                 startActivity(lihatData);
             }
         });
